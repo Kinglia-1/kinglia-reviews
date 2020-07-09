@@ -1,10 +1,15 @@
 ## Server API
 
+### TLDR
 1. [GET Reviews (initial,all)](#get-initial-reviews-info)
 1. [GET average scores](#get-average-scores-for-room)
+1. [Add review](#add-review)
+1. [Update review info](#update-review-info)
 1. [Delete review](#delete-review)
+---
 
-### Get initial reviews info (limited to 6)
+### Get initial reviews info
+(limited to 6)
   * GET `/api/reviews/:roomId/main`
 
 ### Get all reviews info
@@ -20,25 +25,31 @@
 ```json
     [
       {
-        "_roomId": Number,
-        "_reviewId": Unique Number,
-        "user_name": String,
-        "user_image": String,
-        "user_url": String,
-        "date": Date,
-        "text": String,
+        "_roomId": "Number",
+        "_reviewId": "Unique Number",
+        "_reviewId": {
+          "type" : "String",
+          "unique" : true,
+          "required" : true
+          },
+        "user_name": "String",
+        "user_image": "String",
+        "user_url": "String",
+        "date": "Date",
+        "text": "String",
         "scores": {
-          "cleanliness": Number,
-          "communication": Number,
-          "check_in": Number,
-          "accuracy": Number,
-          "location": Number,
-          "value": Number
+          "cleanliness": "Number",
+          "communication": "Number",
+          "check_in": "Number",
+          "accuracy": "Number",
+          "location": "Number",
+          "value": "Number"
         }
       }
       ...
     ]
 ```
+---
 
 ### GET average scores for room
   * GET `/api/reviews/:roomId/scores`
@@ -52,9 +63,10 @@
 
 ```json
     {
-      "_roomId": Number
+      "_roomId": "Number"
     }
 ```
+---
 
 ### Add review
   * POST `/api/reviews/:roomId/`
@@ -65,27 +77,29 @@
 
 ```json
       {
-        "_roomId": Number,
+        "_roomId": "Number",
+        "_reviewId": "Unique Number",
         "_reviewId": {
-          "type" : String,
+          "type" : "String",
           "unique" : true,
           "required" : true
           },
-        "user_name": String,
-        "user_image": String,
-        "user_url": String,
-        "date": Date,
-        "text": String,
+        "user_name": "String",
+        "user_image": "String",
+        "user_url": "String",
+        "date": "Date",
+        "text": "String",
         "scores": {
-          "cleanliness": Number,
-          "communication": Number,
-          "check_in": Number,
-          "accuracy": Number,
-          "location": Number,
-          "value": Number
+          "cleanliness": "Number",
+          "communication": "Number",
+          "check_in": "Number",
+          "accuracy": "Number",
+          "location": "Number",
+          "value": "Number"
         }
       }
 ```
+---
 
 
 ### Update review info
@@ -100,28 +114,30 @@
 **Request Body**: Expects JSON with any of the following keys (include only keys to be updated)
 
 ```json
-    {
-      "_roomId": Number,
-      "_reviewId": {
-          "type" : String,
+      {
+        "_roomId": "Number",
+        "_reviewId": "Unique Number",
+        "_reviewId": {
+          "type" : "String",
           "unique" : true,
           "required" : true
           },
-      "user_name": String,
-      "user_image": String,
-      "user_url": String,
-      "date": Date,
-      "text": String,
-      "scores": {
-        "cleanliness": Number,
-        "communication": Number,
-        "check_in": Number,
-        "accuracy": Number,
-        "location": Number,
-        "value": Number
+        "user_name": "String",
+        "user_image": "String",
+        "user_url": "String",
+        "date": "Date",
+        "text": "String",
+        "scores": {
+          "cleanliness": "Number",
+          "communication": "Number",
+          "check_in": "Number",
+          "accuracy": "Number",
+          "location": "Number",
+          "value": "Number"
+        }
       }
-    }
 ```
+---
 
 ### Delete review
   * DELETE `/api/reviews/:roomId/:reviewId`
