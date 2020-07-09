@@ -27,15 +27,11 @@
       {
         "_roomId": "Number",
         "_reviewId": "Unique Number",
-        "_reviewId": {
-          "type" : "String",
-          "unique" : true,
-          "required" : true
-          },
+        "_userId": "Number",
         "user_name": "String",
         "user_image": "String",
         "user_url": "String",
-        "date": "Date",
+        "date": "DATE",
         "text": "String",
         "scores": {
           "cleanliness": "Number",
@@ -59,12 +55,12 @@
 
 **Success Status Code:** `200`
 
-**Request Body**: Expects JSON with any of the following keys
+**Returns:** Number average score of room
 
 ```json
-    {
-      "_roomId": "Number"
-    }
+
+  "NUMBER"
+
 ```
 ---
 
@@ -73,21 +69,13 @@
 
 **Success Status Code:** `201`
 
-**Request Body**: Expects JSON with the following keys.
+**Request Body**: Expects JSON with the _roomId and _userId keys
+text and and scores keys are OPTIONAL
 
 ```json
       {
         "_roomId": "Number",
-        "_reviewId": "Unique Number",
-        "_reviewId": {
-          "type" : "String",
-          "unique" : true,
-          "required" : true
-          },
-        "user_name": "String",
-        "user_image": "String",
-        "user_url": "String",
-        "date": "Date",
+        "_userId": "Number",
         "text": "String",
         "scores": {
           "cleanliness": "Number",
@@ -111,21 +99,13 @@
 
 **Success Status Code:** `204`
 
-**Request Body**: Expects JSON with any of the following keys (include only keys to be updated)
+**Request Body**: Expects JSON with _reviewId and _roomId key
+text and scores keys are OPTIONAL
 
 ```json
       {
         "_roomId": "Number",
         "_reviewId": "Unique Number",
-        "_reviewId": {
-          "type" : "String",
-          "unique" : true,
-          "required" : true
-          },
-        "user_name": "String",
-        "user_image": "String",
-        "user_url": "String",
-        "date": "Date",
         "text": "String",
         "scores": {
           "cleanliness": "Number",
