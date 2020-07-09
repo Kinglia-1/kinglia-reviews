@@ -1,5 +1,9 @@
 ## Server API
 
+1. [GET Reviews (initial,all)](#get-initial-reviews-info)
+1. [GET average scores](#get-average-scores-for-room)
+1. [Delete review](#delete-review)
+
 ### Get initial reviews info (limited to 6)
   * GET `/api/reviews/:roomId/main`
 
