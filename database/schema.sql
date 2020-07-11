@@ -1,6 +1,6 @@
 CREATE DATABASE kinglia;
 
-\connect kinglia;
+CONNECT kinglia;
 
 CREATE TABLE users (
   _userId     SERIAL,

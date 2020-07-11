@@ -1,11 +1,11 @@
-id,name,location
-1,Gregg Beahan's suite,TurnerfurtHawaii
-2,Micheal Klocko's house,KubsideNew Mexico
-3,Claudine Zboncak's beach house,LouportTennessee
-4,Elton Shields DDS's suite,JohathanchesterWisconsin
-5,Christ Wunsch's beach house,SmithmouthHawaii
-6,Scotty Kuphal's floor,AuerchesterIdaho
-7,Deron Johnson's beach house,New AracelyMinnesota
-8,Audra Champlin's house,South MargarettaNevada
-9,Kiel Smitham's house,KuhicbergIowa
-10,Joanny Shields's penthouse,West BettieAlaska
+room_id,name,location,state
+0,Ettie Lebsack DVM's penthouse,South Miracle,Nebraska
+1,Jameson Lakin's room,West Abbiehaven,New Jersey
+2,Coby Littel's house,Langoshtown,Vermont
+3,Maxine Hackett's house,Schroederville,Vermont
+4,Amara Nitzsche's beach house,East Ardith,Vermont
+5,Hettie Beier's floor,East Cristinaport,New York
+6,Hyman Schneider's room,Cristobalport,Iowa
+7,Janelle Dickens's house,New Estelle,New Hampshire
+8,Nina Schmeler's floor,West Ada,Florida
+9,Darby Ferry's floor,Karianefurt,Arkansas
