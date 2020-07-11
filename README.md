@@ -54,12 +54,19 @@
   * `roomId` room id
 
 **Success Status Code:** `200`
+**Error Status Code:** `400`
 
-**Returns:** Number average score of room
+**Returns:** Number average scores of room
 
 ```json
-
-  "NUMBER"
+        {
+          "cleanliness": "Number",
+          "communication": "Number",
+          "check_in": "Number",
+          "accuracy": "Number",
+          "location": "Number",
+          "value": "Number"
+        }
 
 ```
 ---
@@ -70,7 +77,7 @@
 **Success Status Code:** `201`
 
 **Request Body**: Expects JSON with the _roomId and _userId keys
-text and and scores keys are OPTIONAL
+text and scores keys are OPTIONAL
 
 ```json
       {
@@ -91,10 +98,9 @@ text and and scores keys are OPTIONAL
 
 
 ### Update review info
-  * PATCH `/api/reviews/:roomId/:reviewId/`
+  * PATCH `/api/reviews/:reviewId/`
 
 **Path Parameters:**
-  * `roomId` room id
   * `reviewId` review id
 
 **Success Status Code:** `204`
@@ -104,7 +110,6 @@ text and scores keys are OPTIONAL
 
 ```json
       {
-        "_roomId": "Number",
         "_reviewId": "Unique Number",
         "text": "String",
         "scores": {
