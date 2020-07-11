@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev:start": "nodemon server/index.js",
-    "seed": "node database/seed.js",
+    "seed": "node --max-old-space-size=4096 database/seed.js",
     "test:csv": "node database/cass/csvgen.js",
     "dev:react": "webpack -d --watch",
     "build": "webpack --mode production",

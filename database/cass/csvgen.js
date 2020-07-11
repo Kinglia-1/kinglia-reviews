@@ -24,8 +24,9 @@ const genRandomScores = () => {
   return res;
 };
 
-const dataGen = () => {
-  writer.pipe((fs.createWriteStream('test.csv')));
+const genRooms = () => {
+  const writer = csvWriter();
+  writer.pipe((fs.createWriteStream('./database/cass/rooms.csv')));
   for (let i = 0; i < 10; i++) {
     writer.write({
       room_id: i,
@@ -39,8 +40,9 @@ const dataGen = () => {
 };
 
 const genReview = () => {
-  writer.pipe((fs.createWriteStream('./cassReviews.csv')));
-  for (let i = 0; i < 10; i++) {
+  const writer = csvWriter();
+  writer.pipe((fs.createWriteStream('./database/cass/cassReviews.csv')));
+  for (let i = 0; i < 1000000; i++) {
     for (let j = 0; j < 5; j++) {
       writer.write({
         room_id: i,
@@ -55,5 +57,5 @@ const genReview = () => {
   console.log('Great SuCeSsSsS');
 }
 
-dataGen();
-// genReview();
+genRooms();
+genReview();
