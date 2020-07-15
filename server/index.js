@@ -3,6 +3,8 @@ const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const controller = require('./controller.js');
+// const controller = require('./controllerCass.js');
+// const controller = require('./controllerPG.js');
 
 const app = express();
 const port = 3002;
@@ -15,5 +17,7 @@ app.get('/reviews/:roomId/main', controller.reviewsMain);
 app.get('/reviews/:roomId/all', controller.reviewsAll);
 app.get('/reviews/:roomId/scores', controller.reviewScores);
 app.get('/reviews/:roomId/overall', controller.reviewOverall);
+
+
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}/`));

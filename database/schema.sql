@@ -1,28 +1,33 @@
 CREATE DATABASE kinglia;
 
-CONNECT kinglia;
+\connect kinglia;
 
 CREATE TABLE users (
-  _userId     SERIAL,
+  user_id     INT PRIMARY KEY,
   user_name   VARCHAR(26),
   user_img    VARCHAR(255),
   user_url    VARCHAR(255)
 );
 
 CREATE TABLE reviews (
-  _reviewId   SERIAL,
-  _userId     INT REFERENCES users (_userId),
-  created_at  DATE,
-  review_body TEXT,
-  clean_score INT,
-  com_score   INT,
-  check_score INT,
-  acc_score   INT,
-  loc_score   INT,
-  val_score   INT
-)
+  room_id INT REFERENCES rooms (room_id),
+  reviews_id INT PRIMARY KEY ,
+  user_id INT,
+  user_name VARCHAR(25),
+  user_image VARCHAR(100),
+  text TEXT,
+  cleanliness INT,
+  communication INT,
+  check_in INT,
+  accuracy INT,
+  location INT,
+  value INT
+);
 
 CREATE TABLE rooms (
-  _roomId     SERIAL,
-  _reviewId   INT REFERENCES reviews (_reviewId)
-)
+  room_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  phone TEXT,
+  city VARCHAR(100),
+  state VARCHAR(100)
+);

@@ -1,0 +1,1 @@
+CREATE INDEX index_reviews_on_room_id on reviews using btree (room_id);
