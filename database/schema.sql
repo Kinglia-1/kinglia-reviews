@@ -9,9 +9,18 @@ CREATE TABLE users (
   user_url    VARCHAR(255)
 );
 
+CREATE TABLE rooms (
+  room_id INT PRIMARY KEY,
+  name VARCHAR(100),
+  phone TEXT,
+  city VARCHAR(100),
+  state VARCHAR(100)
+);
+
 CREATE TABLE reviews (
+  reviews_id INT PRIMARY KEY,
   room_id INT REFERENCES rooms (room_id),
-  reviews_id INT PRIMARY KEY ,
+  date TIMESTAMP,
   user_id INT,
   user_name VARCHAR(25),
   user_image VARCHAR(100),
@@ -24,10 +33,3 @@ CREATE TABLE reviews (
   value INT
 );
 
-CREATE TABLE rooms (
-  room_id INT PRIMARY KEY,
-  name VARCHAR(100),
-  phone TEXT,
-  city VARCHAR(100),
-  state VARCHAR(100)
-);
