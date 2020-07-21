@@ -79,7 +79,7 @@ const genReview = (file) => {
 let getSingleReview = (id, id2) => {
   let obj = {
     room_id: id,
-    date: moment(faker.date.recent()).format("YYYY-MM-DD HH:mm:ss."),
+    date: moment(faker.date.recent()).format("YYYY-MM-DD HH:mm:ss"),
     reviews_id: id2,
     user_id: `${getRandomNum(1, 1000, true)}`,
     user_name: faker.internet.userName(),
@@ -100,7 +100,7 @@ let getSingleReviewPG = (id, id2) => {
   let obj = {
     reviews_id: id2,
     room_id: id,
-    date: moment(faker.date.recent()).format("YYYY-MM-DD HH:mm:ss."),
+    date: moment(faker.date.recent()).format("YYYY-MM-DD HH:mm:ss"),
     user_id: `${getRandomNum(1, 1000, true)}`,
     user_name: faker.internet.userName(),
     user_image: 'https://loremflickr.com/320/240/person,head/all',
@@ -111,6 +111,18 @@ let getSingleReviewPG = (id, id2) => {
     accuracy:  getRandomNum(0, 5, true),
     location:  getRandomNum(0, 5, true),
     value:  getRandomNum(0, 5, true)
+  };
+  // console.log(`obj is ${obj}`);
+  return obj
+}
+
+let getSingleRoom = (id, id2) => {
+  let obj = {
+    room_id: id,
+    name: `${faker.name.findName()}'s ${getRandomOf(roomSuff)}`,
+    phone: faker.phone.phoneNumber(),
+    location: `${faker.address.city()}`,
+    state: `${faker.address.state()}`
   };
   // console.log(`obj is ${obj}`);
   return obj
@@ -154,6 +166,45 @@ let genReviewsDrain = (file = 1, callback) => {
   write();
 }
 
+let genGeneralDrain = (file = 1, filename, objGen, writer, amount, subAmount, callback) => {
+  writer.pipe((fs.createWriteStream(`./database/cass/${filename}${file}.csv`)));
+  console.log('in function genReviewsDrain')
+  let count = amount;
+  let i = count;
+  let id = (count * (file - 1));
+  let subId = (count * (file - 1)) * subAmount;
+  // let subAmount = subAmount;
+  let write = () => {
+    let ok = true;
+    do {
+      // const data = getSingleReview(id, subId);
+      const data = objGen(id, subId);
+      if (id % (count/10) == 0) {console.log(`${id} attempting to write`)};
+      if (i === 0) {
+        console.log(`Finished seeding users`);
+        writer.write(data, 'utf-8', callback);
+      } else {
+        ok = writer.write(data);
+        // console.log(`ok is ${ok}`);
+      }
+      if (subId % subAmount === 0) {
+        i -= 1;
+        id += 1;
+        subId += 1;
+        // console.log(`i is ${i}, id is ${id}, subId is ${subId}`);
+      } else {
+        subId += 1;
+        // console.log(`i is ${i}, id is ${id}, subId is ${subId}`);
+      }
+    } while (i >= 0 && ok);
+    if(i > 0 && ok !== true) {
+      writer.once('drain', write);
+    }
+  }
+
+  write();
+}
+
 const genUsers = () => {
   const writerUsers = csvWriter();
   writerUsers.pip((fs.createWriteStream('./database/cass/users.csv')));
@@ -179,12 +230,31 @@ const genUsers = () => {
 
 // genRooms();
 // genReview(1);
-const writerReviews = csvWriter();
+// const writerReviews = csvWriter();
 
-genReviewsDrain(1, () => {
+// genReviewsDrain(1, () => {
+//   console.log('finished seeding reviews')
+//   writerReviews.end();
+// });
+
+// genGeneralDrain(file = 1, filename, objGen, writer, callback)
+let tempWriter = csvWriter();
+let fileNum = 10;
+// let tempFileName = 'pgReviews';
+let tempFileName = 'PGrooms';
+let objGenerator = getSingleRoom;
+// let objGenerator = getSingleReviewPG;
+let amount = 1000000;
+let subAmount = 1;
+
+
+genGeneralDrain(fileNum, tempFileName, objGenerator, tempWriter, amount, subAmount, () => {
   console.log('finished seeding reviews')
-  writerReviews.end();
+  tempWriter.end();
 });
+
+// console.log(getSingleRoom(1,500));
+
 // genUsers();
 
 // console.log({

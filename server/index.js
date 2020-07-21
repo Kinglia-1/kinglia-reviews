@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -13,10 +14,15 @@ app.use(cors());
 app.use('/reviews', express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 
-app.get('/reviews/:roomId/main', controller.reviewsMain);
+app.get('/reviews/:roomId/main', controller.reviewsMainCass);
 app.get('/reviews/:roomId/all', controller.reviewsAll);
-app.get('/reviews/:roomId/scores', controller.reviewScores);
-app.get('/reviews/:roomId/overall', controller.reviewOverall);
+app.get('/reviews/:roomId/scores', controller.reviewScoresCass);
+app.get('/reviews/:roomId/overall', controller.reviewOverallCass);
+// app.get('/reviews/:roomId/main', controller.reviewsMain);
+// app.get('/reviews/:roomId/scores', controller.reviewScores);
+// app.get('/reviews/:roomId/scoresCass', controller.reviewScoresCass);
+// app.get('/reviews/:roomId/overall', controller.reviewOverall);
+// app.get('/reviews/:roomId/overallCass', controller.reviewOverallCass);
 
 
 

@@ -22,14 +22,13 @@ CREATE TABLE reviews (
   room_id INT REFERENCES rooms (room_id),
   date TIMESTAMP,
   user_id INT,
-  user_name VARCHAR(25),
+  user_name VARCHAR(50),
   user_image VARCHAR(100),
-  text TEXT,
+  "text" TEXT,
   cleanliness INT,
   communication INT,
   check_in INT,
   accuracy INT,
   location INT,
-  value INT
+  "value" INT
 );
-

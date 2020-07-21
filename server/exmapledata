@@ -1,0 +1,36 @@
+{
+        "scores": {
+            "cleanliness": 1,
+            "communication": 2,
+            "check_in": 3,
+            "accuracy": 1,
+            "location": 3,
+            "value": 5
+        },
+        "_id": "5f0544c655210349846e24e3",
+        "_roomId": 4,
+        "user_name": "Vern",
+        "user_image": "https://s3.amazonaws.com/uifaces/faces/twitter/magugzbrand2d/128.jpg",
+        "user_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "date": "2020-05-20T05:26:01.724Z",
+        "text": "If we parse the monitor, we can get to the HDD hard drive through the optical CSS port!",
+        "__v": 0
+    },
+    {
+        "scores": {
+            "cleanliness": 1,
+            "communication": 3,
+            "check_in": 2,
+            "accuracy": 5,
+            "location": 2,
+            "value": 1
+        },
+        "_id": "5f0544c655210349846e343a",
+        "_roomId": 4,
+        "user_name": "Audra",
+        "user_image": "https://s3.amazonaws.com/uifaces/faces/twitter/brandonmorreale/128.jpg",
+        "user_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "date": "2020-05-11T07:29:32.316Z",
+        "text": "You can't input the driver without navigating the digital AGP monitor!",
+        "__v": 0
+    }
