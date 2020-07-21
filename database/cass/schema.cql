@@ -1,21 +1,21 @@
-DROP KEYSPACE IF EXISTS reviews;
+DROP KEYSPACE IF EXISTS kinglia;
 
-CREATE KEYSPACE IF NOT EXISTS kinglia-reviews
+CREATE KEYSPACE IF NOT EXISTS kinglia
   WITH REPLICATION = {
-    'class' : "SimpleStrategy',
+    'class' : 'SimpleStrategy',
     'replication_factor' : 1
   };
-USE kinglia-reviews;
+
+USE kinglia;
 
 CREATE TABLE rooms (
-  room_id int PRIMARY KEY,
+  room_id int,
   name text,
   phone text,
   city text,
   state text,
-  desecription text
-)
-WTIH CLUSTERING ORDER BY (name AS)
+  PRIMARY KEY (room_id)
+);
 
 CREATE TABLE reviews (
   room_id int,
@@ -24,16 +24,13 @@ CREATE TABLE reviews (
   user_id int,
   user_name text,
   user_image text,
-  title text,
   text text,
-  reviews_id int,
   cleanliness int,
   communication int,
   check_in int,
   accuracy int,
   location int,
-  value int
-
+  value int,
   PRIMARY KEY (room_id, date)
 )
 WITH CLUSTERING ORDER BY (date DESC);
@@ -44,29 +41,25 @@ CREATE TABLE users_stayed_by_room (
   user_id int,
   user_name text,
   user_image text,
-  user_url text
-
+  user_url text,
   PRIMARY KEY (room_id, stay_date)
 )
 WITH CLUSTERING ORDER BY (stay_date DESC);
 
-CREATE TABLE users_stayed_by_room (
-  user int,
-  date timestamp,
+CREATE TABLE reviews_by_user_id (
   user_id int,
+  date timestamp,
   user_name text,
   user_image text,
   user_url text,
-  title text,
-  text text,
   reviews_id int,
+  text text,
   cleanliness int,
   communication int,
   check_in int,
   accuracy int,
   location int,
-  value int
-
+  value int,
   PRIMARY KEY (user_id, date)
 )
 WITH CLUSTERING ORDER BY (date DESC);

@@ -10,10 +10,7 @@
 
 ### Get initial reviews info
 (limited to 6)
-  * GET `/api/reviews/:roomId/main`
-
-### Get all reviews info
-  * GET `/api/reviews/:roomId/all`
+  * GET `/api/rooms/:roomId/reviews/`
 
 **Path Parameters:**
   * `roomId` room id
@@ -48,7 +45,7 @@
 ---
 
 ### GET average scores for room
-  * GET `/api/reviews/:roomId/scores`
+  * GET `/api/rooms/:roomId/scores`
 
 **Path Parameters:**
   * `roomId` room id
@@ -59,20 +56,19 @@
 **Returns:** Number average scores of room
 
 ```json
-        {
-          "cleanliness": "Number",
-          "communication": "Number",
-          "check_in": "Number",
-          "accuracy": "Number",
-          "location": "Number",
-          "value": "Number"
-        }
-
+      {
+        "cleanliness": "Number",
+        "communication": "Number",
+        "check_in": "Number",
+        "accuracy": "Number",
+        "location": "Number",
+        "value": "Number"
+      }
 ```
 ---
 
 ### Add review
-  * POST `/api/reviews/:roomId/`
+  * POST `/api/rooms/:roomId/reviews/`
 
 **Success Status Code:** `201`
 
@@ -125,10 +121,9 @@ text and scores keys are OPTIONAL
 ---
 
 ### Delete review
-  * DELETE `/api/reviews/:roomId/:reviewId`
+  * DELETE `/api/reviews/:reviewId`
 
 **Path Parameters:**
-  * `roomId` room id
   * `reviewId` review id
 
 **Success Status Code:** `204`
