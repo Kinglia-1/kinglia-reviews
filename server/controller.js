@@ -1,4 +1,4 @@
-const Review = require('../database/reviews.js');
+// const Review = require('../database/reviews.js');
 const cassandra = require('cassandra-driver');
 
 var client = new cassandra.Client({
@@ -43,32 +43,6 @@ const reviewsMainCass = function (req, res) {
   });
 };
 
-// GET REVIEW DATA
-const reviewsMain = function (req, res) {
-  const room = req.params.roomId;
-  Review.find({ _roomId: room }).sort({ date: -1 })
-    .exec((err, data) => {
-      if (err) res.sendStatus(400);
-      res.send(data.slice(0, 6));
-    });
-};
-
-// GET ALL REVIEW DATA FOR MODAL
-const reviewsAll = function (req, res) {
-  const room = req.params.roomId;
-  const limit = Number(req.query.limit);
-  const page = Number(req.query.page);
-
-  const startIndex = (page - 1) * limit;
-  const endIndex = page * limit;
-
-  Review.find({ _roomId: room }).sort({ date: -1 })
-    .exec((err, data) => {
-      if (err) res.sendStatus(400);
-      res.send(data.slice(startIndex, endIndex));
-    });
-};
-
 const reviewScoresCass = function (req, res) {
   const room = req.params.roomId;
   const query = `SELECT room_id,
@@ -85,7 +59,7 @@ const reviewScoresCass = function (req, res) {
     res.send(result.rows);
     // res.send(legacyDataConverter(result.rows));
   });
-}
+};
 
 const reviewOverallCass = function (req, res) {
   const room = req.params.roomId;
@@ -111,7 +85,34 @@ const reviewOverallCass = function (req, res) {
     res.send(obj);
     // res.send(legacyDataConverter(result.rows));
   });
-}
+};
+
+/*
+// GET REVIEW DATA
+const reviewsMain = function (req, res) {
+  const room = req.params.roomId;
+  Review.find({ _roomId: room }).sort({ date: -1 })
+    .exec((err, data) => {
+      if (err) res.sendStatus(400);
+      res.send(data.slice(0, 6));
+    });
+};
+
+// GET ALL REVIEW DATA FOR MODAL
+const reviewsAll = function (req, res) {
+  const room = req.params.roomId;
+  const limit = Number(req.query.limit);
+  const page = Number(req.query.page);
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  Review.find({ _roomId: room }).sort({ date: -1 })
+    .exec((err, data) => {
+      if (err) res.sendStatus(400);
+      res.send(data.slice(startIndex, endIndex));
+    });
+};
 
 // COMBINE REVIEW SCORES BASED ON ROOM ID
 const reviewScores = function (req, res) {
@@ -188,11 +189,9 @@ const reviewOverall = function (req, res) {
     });
 };
 
+*/
+
 module.exports = {
-  reviewsMain,
-  reviewsAll,
-  reviewScores,
-  reviewOverall,
   reviewsMainCass,
   reviewScoresCass,
   reviewOverallCass

@@ -15,7 +15,7 @@ app.use('/reviews', express.static(path.join(__dirname, '../client/dist')));
 app.use(bodyParser.json());
 
 app.get('/reviews/:roomId/main', controller.reviewsMainCass);
-app.get('/reviews/:roomId/all', controller.reviewsAll);
+// app.get('/reviews/:roomId/all', controller.reviewsAll);
 app.get('/reviews/:roomId/scores', controller.reviewScoresCass);
 app.get('/reviews/:roomId/overall', controller.reviewOverallCass);
 // app.get('/reviews/:roomId/main', controller.reviewsMain);
