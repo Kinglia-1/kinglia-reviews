@@ -3,6 +3,7 @@ const cassandra = require('cassandra-driver');
 
 var client = new cassandra.Client({
   contactPoints: ['18.144.13.1'],
+  localDataCenter: 'us-west',
   keyspace: 'kinglia'
 });
 
@@ -38,7 +39,12 @@ const reviewsMainCass = function (req, res) {
   const room = req.params.roomId;
   const query = `SELECT * FROM reviews WHERE room_id = ${room}`;
   client.execute(query, function(err, result) {
-    res.send(legacyDataConverter(result.rows));
+    if (err) {
+      console.log(err);
+      res.status(400).end();
+    } else {
+      res.send(legacyDataConverter(result.rows));
+    }
   });
 };
 
@@ -55,7 +61,12 @@ const reviewScoresCass = function (req, res) {
     FROM reviews WHERE room_id = ${room}
   `;
   client.execute(query, function(err, result) {
-    res.send(result.rows);
+    if (err) {
+      console.log(err);
+      res.status(400).end();
+    } else {
+      res.send(result.rows);
+    }
     // res.send(legacyDataConverter(result.rows));
   });
 };
@@ -73,6 +84,10 @@ const reviewOverallCass = function (req, res) {
     FROM reviews WHERE room_id = ${room}
   `;
   client.execute(query, function(err, result) {
+    if (err) {
+      console.log(err);
+      res.status(400).end();
+    } else {
     let {room_id, total_cleanliness, total_communication, total_check_in, total_accuracy, total_location, total_value, total_reviews} = result.rows[0];
     let average = (total_cleanliness + total_communication + total_communication + total_check_in + total_accuracy + total_location + total_value)/6;
     let scores = total_cleanliness;
@@ -82,6 +97,7 @@ const reviewOverallCass = function (req, res) {
       "total_score": average
     }
     res.send(obj);
+  }
     // res.send(legacyDataConverter(result.rows));
   });
 };
