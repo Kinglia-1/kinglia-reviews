@@ -1,4 +1,4 @@
-const Review = require('../database/reviews.js');
+// const Review = require('../database/reviews.js');
 const cassandra = require('cassandra-driver');
 
 var client = new cassandra.Client({
@@ -96,14 +96,14 @@ const reviewOverallCass = function (req, res) {
       "total_reviews": total_reviews,
       "total_score": average
     }
-    console.log(obj);
+    // console.log(obj);
     res.send(obj);
   }
     // res.send(legacyDataConverter(result.rows));
   });
 };
 
-
+/*
 // GET REVIEW DATA
 const reviewsMain = function (req, res) {
   const room = req.params.roomId;
@@ -205,9 +205,11 @@ const reviewOverall = function (req, res) {
     });
 };
 
+*/
+
 module.exports = {
-  reviewOverall,
-  reviewScores,
+  // reviewOverall,
+  // reviewScores,
   reviewsMainCass,
   reviewScoresCass,
   reviewOverallCass
