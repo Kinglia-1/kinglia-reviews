@@ -1,4 +1,4 @@
-// const Review = require('../database/reviews.js');
+const Review = require('../database/reviews.js');
 const cassandra = require('cassandra-driver');
 
 var client = new cassandra.Client({
@@ -92,17 +92,18 @@ const reviewOverallCass = function (req, res) {
     let average = (total_cleanliness + total_communication + total_communication + total_check_in + total_accuracy + total_location + total_value)/6;
     let scores = total_cleanliness;
     let obj = {
-      "_id": room_id,
+      // "_id": room_id,
       "total_reviews": total_reviews,
       "total_score": average
     }
+    console.log(obj);
     res.send(obj);
   }
     // res.send(legacyDataConverter(result.rows));
   });
 };
 
-/*
+
 // GET REVIEW DATA
 const reviewsMain = function (req, res) {
   const room = req.params.roomId;
@@ -204,9 +205,9 @@ const reviewOverall = function (req, res) {
     });
 };
 
-*/
-
 module.exports = {
+  reviewOverall,
+  reviewScores,
   reviewsMainCass,
   reviewScoresCass,
   reviewOverallCass

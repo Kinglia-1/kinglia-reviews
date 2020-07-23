@@ -30,6 +30,7 @@
     "newrelic": "^6.11.0",
     "nodemon": "^2.0.4",
     "path": "^0.12.7",
+    "pm2": "^4.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-lazyload": "^3.0.0",

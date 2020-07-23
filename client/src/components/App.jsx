@@ -61,8 +61,10 @@ class App extends React.Component {
     });
     Parser.getReviewOverall(roomId, (data) => {
       this.setState({
-        overall: (data[0].total_score).toFixed(2),
-        totalReviews: data[0].total_reviews
+        // overall: (data[0].total_score).toFixed(2),
+        // totalReviews: data[0].total_reviews
+        overall: (data.total_score).toFixed(2),
+        totalReviews: data.total_reviews
       });
     });
   }
